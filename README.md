@@ -27,11 +27,11 @@ Example devcontainer.json
 
 ```json
 {
-    "name": "ebizops",
-    "image": "ebizebase/devbox",
+    "name": "devbox",
+    "image": "ebizbase/devbox",
     "runArgs": [
         "--privileged",
-        "--name=udevbox"
+        "--name=devbox"
     ],
     "overrideCommand": false,
     "remoteUser": "root",
