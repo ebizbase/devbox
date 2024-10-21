@@ -1,0 +1,10 @@
+{
+ 
+    "packages": {
+        ".": {      
+            "release-type": "simple",    
+            "pull-request-title-pattern": "chore(release): release ${version}",
+            "pull-request-header": ":robot: I have created a release pull request for you. Please review and merge it."
+        }
+    }
+}
