@@ -19,5 +19,5 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: ${{ secrets.DOCKERHUB_USERNAME }}/devcontainer
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/devbox
           readme-filepath: README.md
