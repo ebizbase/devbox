@@ -6,7 +6,6 @@
         "--name=ebizbase-devbox"
     ],
     "overrideCommand": false,
-    "onCreateCommand": "docker pull catthehacker/ubuntu:act-latest",
     "remoteUser": "root",
     "customizations": {
         "vscode": {
