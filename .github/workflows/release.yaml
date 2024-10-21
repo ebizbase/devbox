@@ -61,10 +61,10 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/devbox:latest
-            ghcr.io/${{ github.repository_owner }}/devbox:${{ env.MAJOR_TAG }}
-            ghcr.io/${{ github.repository_owner }}/devbox:${{ env.MINOR_TAG }}
-            ghcr.io/${{ github.repository_owner }}/devbox:${{ env.PATCH_TAG }}
+            ghcr.io/${{ github.repository }}/devbox:latest
+            ghcr.io/${{ github.repository }}/devbox:${{ env.MAJOR_TAG }}
+            ghcr.io/${{ github.repository }}/devbox:${{ env.MINOR_TAG }}
+            ghcr.io/${{ github.repository }}/devbox:${{ env.PATCH_TAG }}
             docker.io/${{ secrets.DOCKERHUB_USERNAME }}/devbox:latest
             docker.io/${{ secrets.DOCKERHUB_USERNAME }}/devbox:${{ env.MAJOR_TAG }}
             docker.io/${{ secrets.DOCKERHUB_USERNAME }}/devbox:${{ env.MINOR_TAG }}
