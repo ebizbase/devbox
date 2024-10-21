@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/ebizbase/devbox/compare/v1.0.1...v1.1.0) (2024-10-21)
+
+
+### Features
+
+* using both docker and github registry ([031fe35](https://github.com/ebizbase/devbox/commit/031fe3569eab980e7a697357b983473dd2669c53))
+
 ## [1.0.1](https://github.com/ebizbase/devbox/compare/v1.0.0...v1.0.1) (2024-10-21)
 
 
