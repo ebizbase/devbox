@@ -48,4 +48,4 @@ Example devcontainer.json
 
 ## Contributing
 
-We welcome contributions! Please read our [contributing guidelines](../CONTRIBUTING.md) for more details.
+We welcome contributions! Please read our [contributing guidelines](https://github.com/ebizbase/devbox/blob/main/CONTRIBUTING.md) for more details.
