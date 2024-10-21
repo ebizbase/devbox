@@ -51,7 +51,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/* 
 
-COPY assets/p10k.zsh  ~/.p10k.zsh
+COPY assets/p10k.zsh  /root/.p10k.zsh
 COPY assets/supervisord.conf /etc/supervisor/supervisord.conf
 COPY assets/supervisord.dockerd.conf /etc/supervisor/conf.d/supervisord.dockerd.conf
 
