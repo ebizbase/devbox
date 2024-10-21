@@ -1,0 +1,71 @@
+name: Release Please
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+
+
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Release Please
+        id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.GH_BOT_TOKEN }}
+          config-file: release.json
+          manifest-file: manifest.json
+          include-component-in-tag: false
+
+      - name: Prepare rebuild
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          echo "MAJOR_TAG=${{ steps.release.outputs.major }}" >> $GITHUB_ENV
+          echo "MINOR_TAG=${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}" >> $GITHUB_ENV
+          echo "PATCH_TAG=${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}" >> $GITHUB_ENV
+          echo "VERSION: ${{env.MAJOR_TAG}}.${{env.MINOR_TAG}}.${{env.PATCH_TAG}}"
+
+      - name: Set up Docker Buildx
+        if: ${{ steps.release.outputs.release_created }}
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        if: ${{ steps.release.outputs.release_created }}
+        uses: docker/login-action@v3
+        with:
+          registry: docker.io
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Login to GitHub Container Registry
+        if: ${{ steps.release.outputs.release_created }}
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.GH_BOT_USERNAME }}
+          password: ${{ secrets.GH_BOT_TOKEN }}
+
+      - name: Rebuild
+        if: ${{ steps.release.outputs.release_created }}
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/devbox:latest
+            ghcr.io/${{ github.repository_owner }}/devbox:${{ env.MAJOR_TAG }}
+            ghcr.io/${{ github.repository_owner }}/devbox:${{ env.MINOR_TAG }}
+            ghcr.io/${{ github.repository_owner }}/devbox:${{ env.PATCH_TAG }}
+            docker.io/${{ secrets.DOCKERHUB_USERNAME }}/devbox:latest
+            docker.io/${{ secrets.DOCKERHUB_USERNAME }}/devbox:${{ env.MAJOR_TAG }}
+            docker.io/${{ secrets.DOCKERHUB_USERNAME }}/devbox:${{ env.MINOR_TAG }}
+            docker.io/${{ secrets.DOCKERHUB_USERNAME }}/devbox:${{ env.PATCH_TAG }}
