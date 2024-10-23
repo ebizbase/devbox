@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/ebizbase/devbox/compare/v1.1.0...v1.2.0) (2024-10-23)
+
+
+### Features
+
+* add yarn and ts-node ([86aab00](https://github.com/ebizbase/devbox/commit/86aab00af61abe32df193b80a42f959a668b1ebe))
+
 ## [1.1.0](https://github.com/ebizbase/devbox/compare/v1.0.1...v1.1.0) (2024-10-21)
 
 
