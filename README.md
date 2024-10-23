@@ -29,16 +29,29 @@ Example devcontainer.json
 {
     "name": "devbox",
     "image": "ebizbase/devbox",
-    "runArgs": [
+    "runArgs": [    
+        "--init",
         "--privileged",
         "--name=devbox"
+    ],
+    "mounts": [
+      "source=devbox-dind,target=/var/lib/docker,type=volume",
     ],
     "overrideCommand": false,
     "remoteUser": "root",
     "customizations": {
         "vscode": {
+            "settings": {
+              "files.exclude": {
+                "**/.git": true,
+                "**/.svn": true,
+                "**/.hg": true,
+                "**/.DS_Store": true,
+                "**/Thumbs.db": true,
+                ".pnpm-store": true                
+              }
+            },
             "extensions": [
-                "golang.go",
                 "esbenp.prettier-vscode"
             ]
         }
