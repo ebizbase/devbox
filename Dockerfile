@@ -41,7 +41,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     # Install latest node pnpm and playwright
     && curl -sL https://deb.nodesource.com/setup_lts.x | bash - \
     && apt-get install -y --no-install-recommends nodejs \
-    && npm install -g npm pnpm nx playwright \
+    && npm install -g npm yarn pnpm nx playwright ts-node \
     && pnpx playwright install --with-deps \
     && node --version && pnpm --version \
     # Install act and image for local runner
