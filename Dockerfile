@@ -63,6 +63,9 @@ RUN chmod +x /etc/entrypoint/init.d/entrypoint.supervisord.sh
 # Set the default shell to zsh
 ENV SHELL=/bin/zsh
 
+# flag run nx daemon in container
+ENV NX_DAEMON=true
+
 ENTRYPOINT ["/etc/entrypoint/entrypoint.sh"]    
 CMD ["tail", "-f", "/dev/null"]
 
